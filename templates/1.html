@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Detection</title>
+    <link rel="stylesheet" ="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+
+        h2 {
+            font-family: 'Arial', sans-serif; /* Set font family */
+            color: #fff; /* Set text color */
+            text-align: left; /* Center align the text */
+            margin-top: 70px; /* Add some top margin for spacing */
+            margin-left: 25px;
+            text-transform: uppercase; /* Convert text to uppercase */
+            letter-spacing: 2px; /* Add letter spacing */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add text shadow */
+        }
+
+
+        body {
+            margin: 60px; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+            background-color: #000000;
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            font-family: Arial, sans-serif; /* Optional: Set a fallback font */
+        }
+
+        /* Style for the container holding the buttons and GIF */
+        #container {
+            display: flex; /* Use flexbox layout */
+            justify-content: center; /* Center content horizontally */
+            align-items: flex-start; /* Align content at the top */
+            margin-top: 80px; /* Add some top margin for spacing */
+            background-color:#000000;
+        }
+
+        /* Style for the container holding the buttons */
+        #button-container {
+            text-align: left; /* Center the buttons horizontally */
+        }
+
+        /* Style for the buttons */
+        #button-container form {
+            display: inline-block; /* Display the button forms inline */
+            margin: 80px 30px; /* Add margin around each button form */
+        }
+        #button-container img {
+          display: block; /* Make sure images are displayed as blocks */
+          margin: auto; /* Center the images horizontally */
+      }
+
+        
+
+        /* Style for the GIF container */
+        #gif-container {
+            width: 500px; /* Adjust width as needed */
+            height: 500px; /* Adjust height as needed */
+            margin-left: 20px; /* Add left margin for spacing */
+            border-radius:20px;
+            overflow: hidden; /* Hide overflow if the GIF is larger than the container */
+        }
+
+        /* Style for the GIF element */
+        #exercise-gif {
+            width: 100%; /* Make the GIF fill the container horizontally */
+            height: auto; /* Automatically adjust height to maintain aspect ratio */
+            display: block; /* Ensure the image is treated as a block element */
+            border-radius:20px;
+        }
+
+
+    </style>
+
+    <script>
+        function changeGIF(exercise) {
+            // Get the GIF container and exercise GIF element
+            var gifContainer = document.getElementById("gif-container");
+            var exerciseGIF = document.getElementById("exercise-gif");
+        
+            // Set the source of the exercise GIF based on the exercise clicked
+            if (exercise === "squats") {
+                exerciseGIF.src = "{{ url_for('static', filename='squats.gif') }}";
+            } else if (exercise === "shoulder_press") {
+                exerciseGIF.src = "{{ url_for('static', filename='shoulder_press.gif') }}";
+            } else if (exercise === "hand_curls") {
+                exerciseGIF.src = "{{ url_for('static', filename='hand_curls.gif') }}";
+            } else if (exercise === "lunges") {
+                exerciseGIF.src = "{{ url_for('static', filename='lunges.gif') }}";
+            } else if (exercise === "pushups") {
+            exerciseGIF.src = "{{ url_for('static', filename='pushups.gif') }}";
+            }
+        
+            // Update the form action with the selected exercise
+            var form = document.getElementById("exercise-form");
+            form.action = "/detect/" + exercise;
+        
+            // Manually submit the form
+            form.submit();
+        }
+    </script>
+</head>
+<body>
+    <h2>Choose an Exercise</h2>
+
+    <!-- Container for the buttons and GIF -->
+    <div id="container">
+        <!-- Container for the buttons -->
+        <div id="button-container">
+            <!-- Form with buttons for different exercises -->
+            <form id="exercise-form" action="/detect/squats" method="get">
+                <button hreftype="button" onclick="changeGIF('squats')"> Squats
+                  <img src="{{ url_for('static', filename='squats.gif') }}" alt="Squats Image" width="50">
+                </button>
+            </form>
+            <form id="exercise-form" action="/detect/shoulder_press" method="get">
+                <button type="button" onclick="changeGIF('shoulder_press')">Shoulder Press</button>
+            </form>
+            <form id="exercise-form" action="/detect/hand_curls" method="get">
+                <button type="button" onclick="changeGIF('hand_curls')">Hand Curls</button>
+            </form>
+            <form id="exercise-form" action="/detect/lunges" method="get">
+                <button type="button" onclick="changeGIF('lunges')">Lunges</button>
+            </form>
+            <form id="exercise-form" action="/detect/pushups" method="get">
+                <button type="button" onclick="changeGIF('pushups')">Push-ups</button>
+            </form>
+            <!-- Add more forms and buttons for other exercises -->
+        </div>
+
+        <!-- GIF container -->
+        <div id="gif-container">
+            <img id="exercise-gif" src="{{ url_for('static', filename='index1.png') }}" >
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Detection Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Exercise Detection Result</h1>
+    <div class="result">
+        <p>{{ exercise }} detected: {{ counter }} reps</p>
+        <p>Elapsed time: {{ elapsed_time_formatted }} minutes</p>
+        {% if exercise == 'Shoulder Press' %}
+            <p>Calories Burnt: {{ calories_burnt }}</p>
+        {% endif %}
+        <!-- Add similar blocks for other exercises as needed -->
+    </div>
+    <div class="buttons">
+        <a href="/index.html"><button>Select Exercise</button></a>
+        <a href="/home.html"><button>Go Back Home</button></a>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Detection Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Exercise Detection Result</h1>
+    <div class="result">
+        <p>{{ exercise }} detected: {{ counter }} reps</p>
+        <p>Elapsed time: {{ elapsed_time_formatted }} minutes</p>
+        <p>Calories Burnt: {{ calories_burnt }} cal</p>
+    </div>
+    <div class="buttons">
+        <a href="/index.html"><button>Select Exercise</button></a>
+        <a href="/home.html"><button>Go Back Home</button></a>
+    </div>
+</div>
+
+</body>
+</html>

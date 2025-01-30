@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Detection Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background-size: 1000px;
+            background-repeat: no-repeat;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            margin-top: 100px;
+            width: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Exercise Detection Result</h1>
+    <div class="result">
+        <p>{{ exercise }} detected: {{ counter }} reps</p>
+        <p>Elapsed time: {{ elapsed_time_formatted }} minutes</p>
+        <p>Calories Burnt: {{ calories_burnt }} cal</p>
+    </div>
+    <div class="buttons">
+        <a href="/index.html"><button>Select Exercise</button></a>
+        <a href="/home.html"><button>Go Back Home</button></a>
+    </div>
+</div>
+
+<script>
+    // Assuming `counter` is available in the template
+    const counter = {{ counter }};
+    
+    // Function to set the background image based on reps count
+    function setBackground(counter) {
+        let backgroundUrl = '';
+        if (counter < 10) {
+            backgroundUrl = "{{ url_for('static', filename='11.jpg') }}";
+        } else if (counter < 20) {
+            backgroundUrl = "{{ url_for('static', filename='images/bg_medium_reps.jpg') }}";
+        } else {
+            backgroundUrl = "{{ url_for('static', filename='images/bg_high_reps.jpg') }}";
+        }
+        document.body.style.backgroundImage = `url('${backgroundUrl}')`;
+    }
+
+    // Set the background when the page loads
+    setBackground(counter);
+</script>
+
+</body>
+</html>
+

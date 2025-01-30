@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Detection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            color: #2d3436;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            /* text-align: center; */
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin: 30px;
+            /* margin-bottom: 3rem; */
+            font-weight: 800;
+            background: linear-gradient(to right, #2d3436, #636e72);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 0.7s ease-out forwards;
+        }
+
+        #container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        #button-container {
+            flex: 1.2;
+            min-width: 300px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            animation: slideUp 0.7s ease-out forwards;
+        }
+
+        .exercise-button {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 1rem;
+            padding: 1rem;
+            color: #2d3436;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .exercise-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .exercise-button.active {
+            background: #fff;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+            border: 2px solid #74b9ff;
+        }
+
+        .button-content {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .play-icon {
+            width: 20px;
+            height: 20px;
+            fill: #74b9ff;
+        }
+
+        .exercise-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3436;
+        }
+
+        .exercise-image {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease;
+            background: #f8f9fa;
+            padding: 0.5rem;
+        }
+
+        .exercise-button:hover .exercise-image {
+            transform: scale(1.05);
+        }
+
+        #gif-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.7s ease-out forwards;
+        }
+
+        #exercise-gif {
+            width: 100%;
+            height: 350px;
+            object-fit: contain;
+            display: block;
+            background: #f8f9fa;
+            padding: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            #container {
+                gap: 2rem;
+            }
+            
+            #gif-container {
+                max-width: 450px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+    font-size: 1rem;
+    margin: 1rem auto;
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap; /* Prevents the text from breaking into multiple lines */
+    width: auto; /* Keeps the width based on content */
+}
+
+
+            #container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #gif-container {
+                order: -1;
+                width: 100%;
+                max-width: 400px;
+            }
+
+            #exercise-gif {
+                height: 300px;
+            }
+
+            .exercise-button {
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex; justify-content: center; align-items: center; padding: 20px; margin: 10px 0;">
+        <h1 style="font-size: 1.5rem; margin: 0; padding: 10px 10px; display: inline;">Choose an Exercise</h1>
+    </div>
+    
+
+
+    <div id="container">
+        <div id="button-container">
+            <button class="exercise-button" onclick="changeGIF('squats')">
+                <div class="button-content">
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span class="exercise-name">Squats</span>
+                </div>
+                <img class="exercise-image" src="/static/squats.png" alt="Squats">
+            </button>
+
+            <button class="exercise-button" onclick="changeGIF('shoulder_press')">
+                <div class="button-content">
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span class="exercise-name">Shoulder Press</span>
+                </div>
+                <img class="exercise-image" src="/static/shoulderpress.png" alt="Shoulder Press">
+            </button>
+
+            <button class="exercise-button" onclick="changeGIF('hand_curls')">
+                <div class="button-content">
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span class="exercise-name">Hand Curls</span>
+                </div>
+                <img class="exercise-image" src="/static/biceps.png" alt="Hand Curls">
+            </button>
+
+            <button class="exercise-button" onclick="changeGIF('lunges')">
+                <div class="button-content">
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span class="exercise-name">Lunges-Left</span>
+                </div>
+                <img class="exercise-image" src="/static/lunges.png" alt="Lunges Left">
+            </button>
+
+            <button class="exercise-button" onclick="changeGIF('pushups')">
+                <div class="button-content">
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span class="exercise-name">Push-ups</span>
+                </div>
+                <img class="exercise-image" src="/static/pushups.png" alt="Push-ups">
+            </button>
+
+            <button class="exercise-button" onclick="changeGIF('situps')">
+                <div class="button-content">
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span class="exercise-name">Sit-ups</span>
+                </div>
+                <img class="exercise-image" src="/static/situps.png" alt="Sit-ups">
+            </button>
+
+            <button class="exercise-button" onclick="changeGIF('triceps_curls')">
+                <div class="button-content">
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span class="exercise-name">Triceps Curls</span>
+                </div>
+                <img class="exercise-image" src="/static/triceps.png" alt="Triceps Curls">
+            </button>
+
+            <button class="exercise-button" onclick="changeGIF('lungesr')">
+                <div class="button-content">
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span class="exercise-name">Lunges-Right</span>
+                </div>
+                <img class="exercise-image" src="/static/lungesr.png" alt="Lunges Right">
+            </button>
+
+            <button class="exercise-button" onclick="changeGIF('delt_raises')">
+                <div class="button-content">
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span class="exercise-name">Delt-Raises</span>
+                </div>
+                <img class="exercise-image" src="/static/delt.jpg" alt="Delt Raises">
+            </button>
+        </div>
+
+        <div id="gif-container">
+            <img id="exercise-gif" src="/static/gigachad2.png" alt="Exercise Demo">
+        </div>
+    </div>
+
+    <script>
+        function changeGIF(exercise) {
+            // Update active button state
+            document.querySelectorAll('.exercise-button').forEach(button => {
+                button.classList.remove('active');
+                if (button.onclick.toString().includes(exercise)) {
+                    button.classList.add('active');
+                }
+            });
+
+            // Update GIF
+            const exerciseGIF = document.getElementById("exercise-gif");
+            exerciseGIF.src = `/static/${exercise}.gif`;
+
+            // Submit form (if needed in your backend)
+            const form = document.createElement('form');
+            form.method = 'get';
+            form.action = `/detect/${exercise}`;
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+</body>
+</html>

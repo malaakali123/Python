@@ -1,0 +1,90 @@
+button {
+    background-color: #ea4545;
+    /* Green background */
+    border: none;
+    /* Remove border */
+    color: #000000;
+    /* White text color */
+    padding: 15px 32px;
+    /* Padding */
+    text-align: center;
+    /* Center text horizontally */
+    text-decoration: none;
+    /* Remove underlines */
+    display: inline-block;
+    /* Display as inline block */
+    font-size: 16px;
+    /* Font size */
+    margin: 4px 2px;
+    /* Margin between buttons */
+    cursor: pointer;
+    /* Cursor on hover */
+    border-radius: 20px;
+    /* Rounded corners */
+    transition-duration: 0.4s;
+    /* Transition effect duration */
+}
+
+/* Change background color on hover */
+button:hover {
+    background-color: #a80707;
+}
+
+/* Optional: Center the buttons horizontally */
+form {
+    text-align: center;
+}
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000225;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container styles */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Result styles */
+.result {
+    margin-bottom: 20px;
+}
+
+.result p {
+    margin: 5px 0;
+    font-size: 18px;
+    color: #555;
+}
+
+/* Button styles */
+.buttons {
+    text-align: center;
+}
+
+.buttons button {
+    background-color: #093cf4;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buttons button:hover {
+    background-color: #0e0091;
+}

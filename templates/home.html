@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Workout</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000225; /* Set your desired background color */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the top */
+    flex-wrap: wrap;
+    
+  }
+
+ 
+  nav {
+    background-color: #000225; /* Set your desired navigation bar color */
+    color: #fff;
+    padding: 10px 200px;
+    width: 100%;
+    z-index: 1000;
+    border-radius:20px;
+    
+
+  }
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    
+  }
+  nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  nav ul li a:hover {
+    color: #ff4500; /* Change color on hover if desired */
+  }
+  .container {
+    flex: 0 1 calc(40% - 30px); /* Adjusted flex property */
+    padding: 20px;
+    background-color: #000225;
+    margin-top: 120px;
+    
+    width: 200px; /* Adjusted width */
+    height: 250px; /* Adjusted height */
+    border-radius: 8px;
+    
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+
+    animation-name: popUp;
+    animation-duration: 0.7s;
+    animation-delay: 0.7s; /* Delay animation for 1 second */
+    animation-fill-mode: forwards; /* Keeps the style from the last keyframe */
+    opacity: 0; 
+    
+   
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+
+  @keyframes popUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+        #img-container {
+            width: 500px; /* Adjust width as needed */
+            height: 700px; /* Adjust height as needed */
+            margin-right: 50px; /* Add left margin for spacing */
+            margin-top: 50px;
+            overflow: hidden; /* Hide overflow if the GIF is larger than the container */
+        }
+
+        /* Style for the GIF element */
+        #exercise-image {
+            width: 100%; /* Make the GIF fill the container horizontally */
+            height: auto; /* Automatically adjust height to maintain aspect ratio */
+            display: block; /* Ensure the image is treated as a block element */
+        }
+        
+
+          .container p {
+            font-family: Optima, sans-serif; /* Apply Optima font style to <p> tag */
+            font-weight: 1000;
+          }
+
+
+      #image-container {
+        width: 500px; /* Adjust width as needed */
+            height: 700px; /* Adjust height as needed */
+            margin-left:240px; /* Add left margin for spacing */
+            margin-top: 0px;
+            overflow: hidden; /* Hide overflow if the GIF is larger than the container */
+      }
+
+      #image-container2 {
+        width: 250px; /* Adjust width as needed */
+             /* Adjust height as needed */
+            margin-left:650px; /* Add left margin for spacing */
+            margin-top: -550px;
+            overflow: hidden; /* Hide overflow if the GIF is larger than the container */
+      }
+      #image-container3 {
+        width: 500px; /* Adjust width as needed */
+            height: 700px; /* Adjust height as needed */
+            margin-right:150px; /* Add left margin for spacing */
+            margin-top: 40px;
+            overflow: hidden; /* Hide overflow if the GIF is larger than the container */
+      }
+      
+      #image-containerid{
+        width: 80%; /* Make sure image doesn't exceed container width */
+        height: auto; /* Maintain aspect ratio */
+        display: block; /* Remove any default image spacing */
+       
+      }
+
+
+      .big-div {
+        width: 80%; /* Set width of big div */
+        margin-left:80px;
+        background-color: #000225; /* Background color for big div */
+        padding: 20px; /* Add some padding */
+        overflow: hidden; /* Clear floats */
+        margin-top: -380px;
+      }
+    
+      .left-div {
+        margin-left: 110px;
+        border-radius: 20px;
+        float: left; /* Float left to position div on the left */
+        width: 35%; /* Set width of left div */
+        background-color: #000225; /* Background color for left div */
+        padding: 20px; /* Add some padding */
+        box-sizing: border-box; /* Include padding in the width */
+        justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    
+      }
+    
+      .right-div {
+        border-radius:20px;
+        margin-right: 25px;
+        float: right; /* Float right to position div on the right */
+        width: 35%; /* Set width of right div */
+        background-color: #000225; /* Background color for right div */
+        padding: 20px; /* Add some padding */
+        box-sizing: border-box; /* Include padding in the width */
+        justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+      }
+
+      /* Clear floats after the big div */
+      .big-div:after {
+        content: "";
+        display: flex;
+        clear: both;
+      }
+
+      #howitworks {
+        width: 30%; /* Set width of big div */
+        height:100px;
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #000225; /* Background color for big div */
+        padding: 20px; /* Add some padding */
+        margin-left: 550px;
+        margin-top: 100px;
+        
+      }
+
+      .bn632-hover {
+        width: 160px;
+        margin:30px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        cursor: pointer;
+       
+        height: 55px;
+        text-align:center;
+        border: none;
+        background-size: 300% 100%;
+        border-radius: 50px;
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+      }
+      
+      .bn632-hover:hover {
+        background-position: 100% 0;
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+      }
+      
+      .bn632-hover:focus {
+        outline: none;
+      }
+      
+      .bn632-hover.bn26 {
+        background-image: linear-gradient(
+          to right,
+          #25aae1,
+          #4481eb,
+          #04befe,
+          #3f86ed
+        );
+        box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+      }
+    
+      #container3 {
+        background-color:#000225;
+        width:1800px;
+        height:700px;
+        border-radius:30px;
+        margin: 20px;
+      }
+
+      #whyexai {
+        width: 90%; /* Set width of big div */
+        
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #000225; /* Background color for big div */
+        padding: 20px; /* Add some padding */
+        text-align: center;
+        margin-left:50px;
+        margin-top:-90px;
+        border-radius:20px;
+        color:#fff
+        }
+
+      #poseest {
+        width:600px;
+        height:300px;
+        background-color:#000225;
+        margin-top:-70px;
+      }
+
+      #poseest-img{
+        width: 130%; /* Make sure image doesn't exceed container width */
+        margin-top:0px; 
+      }
+
+      #poseesttext {
+        width:50%;
+        height:50%;
+        margin-left:640px;
+        background-color:#000225;
+        margin-top:-150px;
+        justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    
+      }
+      #angest {
+        width:300px;
+        height:300px;
+        background-color:#000225;
+        margin-top:-50px;
+        margin-left:700px;
+      }
+      #angest-img{
+        width:250%;
+
+      }
+      
+      #angesttext {
+        width:40%;
+        height:50%;
+        margin-left:100px;
+        background-color:#000225;
+        margin-top:-190px;
+        justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    
+      }
+
+      #result {
+        width:500px;
+        height:500px;
+        background-color:#000225;
+        margin-top:30px;
+        margin-left:200px;
+      }
+      
+      #time-img{
+        width:60%;
+        margin-left:-30px;
+        
+        
+      }
+      #calorie-img{
+        width:55%;
+        margin-top:-100px;
+        margin-left:120px;
+      }
+    
+    #progress-img{
+      width:70%;
+      margin-top:-60px;
+      margin-left:0px;
+      transform:rotate(-17deg);
+    }
+
+    #resulttext {
+      width:40%;
+      height:50%;
+      margin-left:700px;
+      background-color:#000225;
+      margin-top:-450px;
+      justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  
+    }
+    #container4 {
+      background-color:#000225;
+      width:1500px;
+      height:700px;
+      border-radius:30px;
+      margin: 20px;
+    }
+    #formtitle {
+      width: 90%; /* Set width of big div */
+      
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #000225; /* Background color for big div */
+      padding: 20px; /* Add some padding */
+      text-align: center;
+      margin-left:50px;
+      margin-top:20px;
+      border-radius:20px;
+      color:#fff
+      }
+
+      #incorrectform {
+        width:600px;
+        height:300px;
+        background-color:#000225;
+        margin-top:-70px;
+      }
+
+      #incorrect-img{
+        width: 85%; /* Make sure image doesn't exceed container width */
+        margin-top:100px; 
+      }
+
+      #incorrecttext {
+        width:50%;
+        height:50%;
+        margin-left:640px;
+        background-color:#000225;
+        margin-top:-150px;
+        justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;}
+
+    #correctform {
+      width:700px;
+      background-color:#000225;
+      margin-top:-20px;
+      margin-left:750px;
+    }
+    #correct-img{
+      width:500%;
+      
+
+    }
+    
+    #correcttext {
+      width:40%;
+      height:50%;
+      margin-left:100px;
+      background-color:#000225;
+      margin-top:-400px;
+      justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+    }
+
+
+      
+</style>
+</head>
+<body>
+    
+<nav>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#container3">Workouts</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<img style="width:10%; margin-left:20px;" src="{{ url_for('static', filename='logo.png') }}" >
+
+<div class="container" style="width: 500px; height: 500px;">
+  
+  <h1 style="font-size: 80px;">ex.ai</h1>
+  <h2 style="font-size: 26px;">AI based Home Workout Assistant</h2>
+  <p style="font-size: 18px; font-family: Optima, sans-serif; font-weight: 10;">Transform your fitness journey with automated workout tracking and personalized insights.Say goodbye to manual tracking and hello to streamlined progress monitoring with ex.ai by your side.</p>
+  <a href="index.html"><button class="bn632-hover bn26">Get Started</button></a>
+</div>
+
+<div id="img-container">
+    <img id="exercise-image" src="{{ url_for('static', filename='homephoto.png') }}" >
+</div>
+
+
+
+<div id="howitworks">
+  <p style="font-size: 60px; color:white; font-weight:bold;">How It Works</p>
+</div>
+
+
+<div id="image-container">
+  <img  id="image-containerid" src="{{ url_for('static', filename='image3.gif') }}" >
+</div>
+
+<div id="image-container3">
+  <img  id="image-containerid" src="{{ url_for('static', filename='image2.gif') }}" >
+</div>
+
+<div id="image-container2">
+  <img  id="image-containerid" src="{{ url_for('static', filename='arrow.png') }}" >
+</div>
+
+
+<div class="big-div">
+  <div class="left-div">
+    
+      <p style="font-size:20px;">
+        Pose estimation using OpenCV and MediaPipe involves detecting key points on the human body, enabling applications such as fitness tracking and gesture recognition.</p>  </div>
+  <div class="right-div">
+    <p style="font-size:20px;">
+Utilizing OpenCV and MediaPipe, track exercise repetitions and duration by analyzing key poses. Estimate calorie expenditure based on movement intensity for comprehensive workout feedback.</p>
+  </div>
+</div>
+
+<div id="container3">
+  <div id="whyexai">
+    <p style="font-size: 60px; color:white; font-weight:bold;">WHY ex.ai ?</p>
+  </div>
+  <div id="poseest">
+  <img  id="poseest-img" src="{{ url_for('static', filename='poseest.png') }}" >
+</div>
+  <div id="poseesttext">
+    <h1 style="font-size: 34px; color:white; ">POSE DETECTION</H1>
+    <p style="font-size: 24px; color:white;">Discover the power of precise pose estimation with ex.ai. Our advanced AI technology accurately tracks your movements, providing invaluable feedback for optimizing your workouts and achieving your fitness goals with confidence.</p>
+  </div>
+  <div id="angest">
+    <img  id="angest-img" src="{{ url_for('static', filename='angest.png') }}" >
+  </div>
+  <div id="angesttext">
+    <h1 style="font-size: 34px; color:white;text-align:center">ANGLE DETECTION</h1>
+    <p style="font-size: 24px; color:white;">Elevate your fitness journey with ex.ai's innovative angle detection feature. Perfect your form and technique as ex.ai provides real-time feedback on angles, ensuring each movement is optimized for maximum effectiveness and safety.</p>
+  </div>
+  <div id="result">
+    <img  id="time-img" src="{{ url_for('static', filename='time.png') }}" >
+    <img  id="progress-img" src="{{ url_for('static', filename='progress.png') }}" >
+    <img  id="calorie-img" src="{{ url_for('static', filename='calorie.png') }}" >
+  </div>
+
+  <div id="resulttext">
+    <h1>RESULT ANALYSIS</h1>
+    <p style="font-size: 24px; color:white;">Elevate your fitness journey with ex.ai, where every workout concludes with comprehensive insights. Track your duration, number of reps, and calories burnt effortlessly, empowering you to optimize your progress and achieve your fitness aspirations with confidence</p>
+  </div>
+
+  
+<div id="container4">
+  <div id="formtitle">
+    <p style="font-size: 60px; color:white; font-weight:bold;">FORM CORRECTION</p>
+  </div>
+
+  <div id="incorrectform">
+    <img  id="incorrect-img" src="{{ url_for('static', filename='incorrecrform.png') }}" >
+  </div>
+    <div id="incorrecttext">
+      <h1 style="font-size: 34px; color:white; ">INCORRECT POSTURE</H1>
+      <p style="font-size: 24px; color:white;">Incorrect posture during exercise can result in increased risk of injury due to undue strain on muscles and joints. It can also compromise the effectiveness of the exercise by engaging the wrong muscles or limiting range of motion. Consistently maintaining proper posture ensures safer and more efficient workouts.</p>
+    </div>
+
+    <div id="correctform">
+      <img  id="incorrect-img" src="{{ url_for('static', filename='correctform.png') }}" >
+    </div>
+      <div id="correcttext">
+        <h1 style="font-size: 34px; color:white; ">CORRECT POSTURE</H1>
+        <p style="font-size: 24px; color:white;">Our website, Ex.ai, utilizes advanced technologies like MediaPipe to provide real-time feedback and guidance on correcting posture during exercise. By analyzing users' movements, it can detect deviations from proper form and offer personalized recommendations to improve posture and reduce the risk of injury. With Ex.ai, users can enhance their workout experience by ensuring they maintain optimal posture throughout their exercises.</p>
+      </div>
+</div>
+
+</body>
+</html>
